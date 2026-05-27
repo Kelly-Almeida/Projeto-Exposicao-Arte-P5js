@@ -3,7 +3,8 @@
 let ampli = 50, freq = 20, x = 0, y =0;
 let alt, posi = 0, inicioPeixe;
 
-let dinamicos = [];
+let dinamicos = []; 
+let estatico = [], imagemEstaticas = [];
 
 let peixes = [];
 
@@ -21,6 +22,12 @@ function preload(){
   peixes[7] = loadImage("tubarao.png");
   peixes[8] = loadImage("cavalo-marinho.png");
   peixes[9] = loadImage("baleia.png");
+  peixes[10] = loadImage("peixe.png");
+  peixes[11] = loadImage("baiacu.png");
+  peixes[12] = loadImage("peixe-1.png");
+  peixes[13] = loadImage("peixe-2.png");
+  peixes[14] = loadImage("peixe-gato.png");
+  peixes[15] = loadImage("peixe-palhaco.png");
   
   
   //Elementos estáticos
@@ -32,6 +39,7 @@ function preload(){
   pedra = loadImage("pedra.png");
   concha = loadImage("concha.png");
   bau = loadImage("bau-de-tesouro.png");
+  castelo = loadImage("castelo-de-areia.png");
 }
 
 function setup() {
@@ -49,41 +57,81 @@ function setup() {
     
   }
   
+  let p = 0;
   for(let i = 0; i < 10; i++){
-    dinamicos[i] = [];
+    dinamicos[p] = [];
     //Imagem do peixe
-    dinamicos[i][0] = peixes[i];
+    dinamicos[p][0] = peixes[p];
     //alt ou y 
-    dinamicos[i][1] = random(height);
+    dinamicos[p][1] = random(height);
     //Posi ou posição no eixo X
-    dinamicos[i][2] = random(-50,-350);
+    dinamicos[p][2] = random(-50,-350);
     //Iniciopeixe
-    dinamicos[i][3] = random(height - 200);
+    dinamicos[p][3] = random(height - 200);
     //amplitude
-    dinamicos[i][4] = random(5, 30);
+    dinamicos[p][4] = random(5, 30);
     //Velocidade
-    dinamicos[i][5] = random(2.5, 1.0);
+    dinamicos[p][5] = random(2.5, 1.0);
     //periodo
-    dinamicos[i][6] = random(0.07, 0.01);
+    dinamicos[p][6] = random(0.07, 0.01);
     
-    if (i == 7){
-      dinamicos[i][5] = random(2,4);
+    
+    if (p == 7){
+      dinamicos[p][5] = random(2,4);
       //Posi ou posição no eixo X
-      dinamicos[i][2] = random(-500,-700);
+      dinamicos[p][2] = random(-500,-700);
     }
     
     if(i == 9){
       //Posi ou posição no eixo X
-      dinamicos[i][2] = random(-1000,-700);
+      dinamicos[p][2] = random(-1000,-700);
       //Iniciopeixe
-      dinamicos[i][3] = random(height - 200);
+      dinamicos[p][3] = random(height - 200);
+    } 
+    p++;
+    if (p > 15){
+      p = 0;
     }
+
     
     
+    
+  }
+  imagemEstaticas[0] = [algas1, 60, 60];
+  imagemEstaticas[1] = [bau, 100, 100];
+  imagemEstaticas[2] = [algas, 75, 75];
+  imagemEstaticas[3] = [coral, 60, 60];
+  imagemEstaticas[4] = [algas2, 70, 70];
+  imagemEstaticas[5] = [pedra, 90, 90];
+  imagemEstaticas[6] = [concha, 30, 30];
+  imagemEstaticas[7] = [estrela, 50,50];
+  imagemEstaticas[8] = [algas1, 60, 60]; 
+  imagemEstaticas[9] = [algas, 75, 75];
+  imagemEstaticas[10] = [algas1, 50, 50];
+  
+
+  let num = 0;
+  let baus = 0;
+  for (let i = 0; i < 100; i++){
+
+    
+    estatico [i] = [];
+    estatico[i][0] = random(0.01, 0.95);
+    estatico[i][1] = random(0.75, 0.92);
+    estatico[i][2] = imagemEstaticas[num][0];
+    estatico[i][3] = imagemEstaticas[num][1];
+    estatico[i][4] = imagemEstaticas[num][2];
+
+    num++;
+    if (num > 10){
+      num = 0;
+    }
+ 
   }
 
   
 }
+
 
 
 function draw() {
@@ -112,28 +160,24 @@ function draw() {
   strokeWeight(2.5);
   stroke(0, 0, 60);
   fill(195, 172, 135);
+  rect(-10,height * 0.80 , width+ 10, height * 0.35);
   
+  image(castelo, width * 0.80, height * 0.60, 200, 200)
+  let numRep = width * 0.015;
   
   //Plantas
-  image(bau, width * 0.1, height * 0.75, 100 , 100);
-  image(algas, width * 0.9, height * 0.8, 75 , 75);
-  image(coral, width * 0.75, height * 0.85, 60, 60);
-  image(algas2, width * 0.45, height * 0.75, 70, 70);
-  image(algas, width * 0.35, height * 0.87, 75 , 75);
-  image(coral, width * 0.23, height * 0.92, 60, 60);
-  image(algas1, width * 0.25, height * 0.8, 55, 55);
-  image(estrela, width * 0.47, height * 0.90, 50, 50);
-  image(algas2, width * 0.55, height * 0.82, 70, 70);
-  image(pedra, width * 0.001, height * 0.89, 90, 90);
-  image(pedra, width * 0.90, height * 0.8, 90, 90);
-  image(concha, width * 0.7, height * 0.87, 30, 30);
+for(let i = 0; i <numRep; i++){
   
+    image(estatico[i][2],width* estatico[i][0],height* estatico[i][1], estatico[i][3], estatico[i][4] );
+}
+  
+
   
   //Dinâmicos
   for(let i = 0; i < 10; i++){
     
         
-    peixinho1(dinamicos[i][1], dinamicos[i][2], dinamicos[i][3], dinamicos[i][0], dinamicos[i][4], dinamicos[i][6]);
+    peixinho1(dinamicos[i][1], dinamicos[i][2], dinamicos[i][3], dinamicos[i][0], dinamicos[i][4] , dinamicos[i][6]);
     
     
     
@@ -168,7 +212,7 @@ function draw() {
   }
   
  
-  
+  //rect(0, height * 0.8, width * 0.1);
 }
 
 
