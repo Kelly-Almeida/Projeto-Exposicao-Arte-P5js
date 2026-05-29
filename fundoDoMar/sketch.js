@@ -1,4 +1,4 @@
-//Decorações do chão
+//O mousePressed no bau e no castelo
 
 let ampli = 50, freq = 20, x = 0, y =0;
 let alt, posi = 0, inicioPeixe;
@@ -97,8 +97,9 @@ function setup() {
     
     
   }
+  //Elementos do fundo do mar
   imagemEstaticas[0] = [algas1, 60, 60];
-  imagemEstaticas[1] = [bau, 100, 100];
+  imagemEstaticas[1] = [coral, 100, 100];
   imagemEstaticas[2] = [algas, 75, 75];
   imagemEstaticas[3] = [coral, 60, 60];
   imagemEstaticas[4] = [algas2, 70, 70];
@@ -111,10 +112,8 @@ function setup() {
   
 
   let num = 0;
-  let baus = 0;
   for (let i = 0; i < 100; i++){
-
-    
+    //Atribuição
     estatico [i] = [];
     estatico[i][0] = random(0.01, 0.95);
     estatico[i][1] = random(0.75, 0.92);
@@ -123,6 +122,7 @@ function setup() {
     estatico[i][4] = imagemEstaticas[num][2];
 
     num++;
+    //teste para reiniar a atribuição do vetor
     if (num > 10){
       num = 0;
     }
@@ -162,18 +162,19 @@ function draw() {
   fill(195, 172, 135);
   rect(-10,height * 0.80 , width+ 10, height * 0.35);
   
-  image(castelo, width * 0.80, height * 0.60, 200, 200)
-  let numRep = width * 0.015;
+  image(castelo, width * 0.80, height * 0.60, 200, 200);
+  image(bau, width * 0.1, height * 0.65, 160, 160);
+  let numRep = width * 0.01;
   
   //Plantas
-for(let i = 0; i <numRep; i++){
-  
-    image(estatico[i][2],width* estatico[i][0],height* estatico[i][1], estatico[i][3], estatico[i][4] );
-}
+  for(let i = 0; i <numRep; i++){
+    
+      image(estatico[i][2],width* estatico[i][0],height* estatico[i][1], estatico[i][3], estatico[i][4] );
+  }
   
 
   
-  //Dinâmicos
+  //Dinâmicos/peixes
   for(let i = 0; i < 10; i++){
     
         
