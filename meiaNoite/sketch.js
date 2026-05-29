@@ -15,6 +15,11 @@ function preload(){
   casa = loadImage("casa 1.png");
   nuvem = loadImage("nuvem.png");
   nuvem1= loadImage("nuvem (1).png");
+  arvore = loadImage("arvore.png");
+
+
+  //Lobinho
+  lobo = loadImage("Pausar GIF Image.gif")
 }
 
 function setup() {
@@ -48,16 +53,17 @@ function noite(J){
   strokeWeight(8)
   stroke(0,0,0);
   fill(118, 177, 112);
-  rect(-20, height*0.85, width + 30, height * 0.2);
+  rect(-20, height*0.7, width + 30, height * 0.4);
   
   //Elementos da noite
   image(lua, width *0.72, height * 0.12, width*0.12, width *0.12)
   image(casaNoite, width * 0.65, height * 0.45, width *0.3, width * 0.3);
   image(arbusto, width * 0.1, height* 0.75, width * 0.12, width*0.12); 
   image(arbusto, width * 0.4, height* 0.8, width * 0.12, width*0.12);
+  image(arvore, width * 0.2, height* 0.4, width* 0.2, width* 0.2);
 
-  //FALTA
-  //image(lobinho)
+    //FALTA
+    image(lobo, width * 0.5, height *0.7, 200, 200);
   return J;
 }
 
@@ -69,7 +75,7 @@ function dia(J){
   strokeWeight(6)
   stroke(0,0,0);
   fill(118, 177, 112);
-  rect(-20, height*0.85, width + 30, height * 0.2);
+  rect(-20, height*0.7, width + 30, height * 0.4);
   image(arbusto, width * 0.1, height* 0.75, width * 0.12, width*0.12); 
   image(arbusto, width * 0.4, height* 0.8, width * 0.12, width*0.12);
   
@@ -77,6 +83,8 @@ function dia(J){
   image(nuvem1, width * 0.4, height* 0.2, width * 0.12, width*0.12);
   image(sol, width *0.7, height * 0.1, width*0.15, width *0.15);
   image(casa, width * 0.65, height * 0.45, width *0.3, width * 0.3);
+  image(arvore, width * 0.2, height* 0.4, width* 0.2, width* 0.2);
+  
   
   return J;
 }
@@ -89,6 +97,12 @@ function mousePressed() {
     }
     //Inverte para que ver como se diverte
     meiaNoite =!meiaNoite;
+
+    //acionado o gif
+    if (meiaNoite) {
+        lobo.setFrame(0);
+        lobo.play();
+    }
 
     //Teste para verificar se apertou na lua/sol
     if(mouseY > height * 0.1 && mouseY < (height - height *0.2) && mouseX > width * 0.7 && mouseX <(width - width *0.15) && meiaNoite){
