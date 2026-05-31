@@ -1,17 +1,15 @@
-//O mousePressed no bau e no castelo
-
-let ampli = 50, freq = 20, x = 0, y =0;
+let ampli = 50, freq = 20, x = 0, y = 0;
 let alt, posi = 0, inicioPeixe;
-
 let dinamicos = []; 
 let estatico = [], imagemEstaticas = [];
-
 let peixes = [];
-
 let bolhas = [];
+let fundo = document.getElementById("fundo");
+
+
+let quantidadePlantas = 20; 
 
 function preload(){
-  //Elementos dinamicos
   peixes[0] = loadImage("peixe.png");
   peixes[1] = loadImage("baiacu.png");
   peixes[2] = loadImage("peixe-1.png");
@@ -29,8 +27,7 @@ function preload(){
   peixes[14] = loadImage("peixe-gato.png");
   peixes[15] = loadImage("peixe-palhaco.png");
   
-  
-  //Elementos estáticos
+
   coral = loadImage("coral.png");
   estrela = loadImage("estrelas-do-mar.png");
   algas = loadImage("algas-marinhas (1).png");
@@ -40,12 +37,15 @@ function preload(){
   concha = loadImage("concha.png");
   bau = loadImage("bau-de-tesouro.png");
   castelo = loadImage("castelo-de-areia.png");
+
+  // Bonequinho 
+  submarino = loadImage("SUBMARINO.png");
 }
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(windowWidth - 50, windowHeight - 50);
   
-  
+  quantidadePlantas = floor(width * 0.015); 
   
   for(let i = 0; i < 50; i++){
     bolhas[i] = [];
@@ -53,51 +53,34 @@ function setup() {
     bolhas[i][1] = random(width + 10);
     bolhas[i][2] = random(1, 5);
     bolhas[i][3] = random(100, 120);
-
-    
   }
   
   let p = 0;
   for(let i = 0; i < 10; i++){
     dinamicos[p] = [];
-    //Imagem do peixe
     dinamicos[p][0] = peixes[p];
-    //alt ou y 
     dinamicos[p][1] = random(height);
-    //Posi ou posição no eixo X
     dinamicos[p][2] = random(-50,-350);
-    //Iniciopeixe
     dinamicos[p][3] = random(height - 200);
-    //amplitude
     dinamicos[p][4] = random(5, 30);
-    //Velocidade
     dinamicos[p][5] = random(2.5, 1.0);
-    //periodo
     dinamicos[p][6] = random(0.07, 0.01);
-    
     
     if (p == 7){
       dinamicos[p][5] = random(2,4);
-      //Posi ou posição no eixo X
       dinamicos[p][2] = random(-500,-700);
     }
     
     if(i == 9){
-      //Posi ou posição no eixo X
       dinamicos[p][2] = random(-1000,-700);
-      //Iniciopeixe
       dinamicos[p][3] = random(height - 200);
     } 
     p++;
     if (p > 15){
       p = 0;
     }
-
-    
-    
-    
   }
-  //Elementos do fundo do mar
+
   imagemEstaticas[0] = [algas1, 60, 60];
   imagemEstaticas[1] = [coral, 100, 100];
   imagemEstaticas[2] = [algas, 75, 75];
@@ -106,49 +89,41 @@ function setup() {
   imagemEstaticas[5] = [pedra, 90, 90];
   imagemEstaticas[6] = [concha, 30, 30];
   imagemEstaticas[7] = [estrela, 50,50];
-  imagemEstaticas[8] = [algas1, 60, 60]; 
-  imagemEstaticas[9] = [algas, 75, 75];
-  imagemEstaticas[10] = [algas1, 50, 50];
+  imagemEstaticas[8] = [algas, 75, 75];
+  imagemEstaticas[9] = [algas1, 50, 50];
   
 
   let num = 0;
-  for (let i = 0; i < 100; i++){
-    //Atribuição
-    estatico [i] = [];
-    estatico[i][0] = random(0.01, 0.95);
-    estatico[i][1] = random(0.75, 0.92);
+  for (let i = 0; i < quantidadePlantas; i++){
+    estatico[i] = [];
+    
+    estatico[i][0] = random(0.01, 0.95) * width; 
+    estatico[i][1] = random(0.75, 0.92) * height; 
+    
     estatico[i][2] = imagemEstaticas[num][0];
     estatico[i][3] = imagemEstaticas[num][1];
     estatico[i][4] = imagemEstaticas[num][2];
 
     num++;
-    //teste para reiniar a atribuição do vetor
-    if (num > 10){
+    if (num > 9){
       num = 0;
     }
- 
   }
-
-  
 }
-
-
 
 function draw() {
   background(0, 70, 150);
   
-  
-  //Bolhas
-  for(let i = 0; i < 50; i++){
 
+  for(let i = 0; i < 50; i++){
     let vel = map(bolhas[i][2], 1, 5, 3, 8);
     let tam = map(bolhas[i][2], 1, 5, 10, 20);
-    noStroke()
+    noStroke();
     
-    fill(255, 255, 255, bolhas[i][3])
+    fill(255, 255, 255, bolhas[i][3]);
     circle(bolhas[i][0], bolhas[i][1], tam);
     
-    bolhas[i][1] -=vel;
+    bolhas[i][1] -= vel;
     
     if(bolhas[i][1] < 0){
       bolhas[i][1] = random(width + 40, width + 10);
@@ -156,72 +131,70 @@ function draw() {
     }
   }
   
-  //Areia
+
   strokeWeight(2.5);
   stroke(0, 0, 60);
   fill(195, 172, 135);
-  rect(-10,height * 0.80 , width+ 10, height * 0.35);
+  rect(-10, height * 0.80, width + 10, height * 0.35);
   
-  image(castelo, width * 0.80, height * 0.60, 200, 200);
-  image(bau, width * 0.1, height * 0.65, 160, 160);
-  let numRep = width * 0.01;
-  
-  //Plantas
-  for(let i = 0; i <numRep; i++){
-    
-      image(estatico[i][2],width* estatico[i][0],height* estatico[i][1], estatico[i][3], estatico[i][4] );
-  }
+  image(castelo, width * 0.80, height * 0.55, 200, 200);
+  image(bau, width * 0.1, height * 0.62, 160, 160);
+  image(submarino, mouseX - 65, mouseY - 65, 200, 200);
   
 
+  for(let i = 0; i < quantidadePlantas; i++){
+      image(estatico[i][2], estatico[i][0], estatico[i][1], estatico[i][3], estatico[i][4]);
+  }
   
-  //Dinâmicos/peixes
   for(let i = 0; i < 10; i++){
-    
-        
-    peixinho1(dinamicos[i][1], dinamicos[i][2], dinamicos[i][3], dinamicos[i][0], dinamicos[i][4] , dinamicos[i][6]);
-    
-    
+    peixinho1(dinamicos[i][1], dinamicos[i][2], dinamicos[i][3], dinamicos[i][0], dinamicos[i][4], dinamicos[i][6]);
     
     dinamicos[i][2] += dinamicos[i][5];
     
     if (dinamicos[i][2] > width + 100){
-      //Posi ou posição no eixo X
-      dinamicos[i][2] = random(-100,-200);
-      //Iniciopeixe
+      dinamicos[i][2] = random(-100, -200);
       dinamicos[i][3] = random(height - 150);
-      //Velocidade
       dinamicos[i][5] = random(2.5, 1.0);
-      //periodo
       dinamicos[i][6] = random(0.07, 0.01);
       
       if (i == 7){
-        dinamicos[i][5] = random(2,4);
-        //Posi ou posição no eixo X
-      dinamicos[i][2] = random(-800, -1000);
+        dinamicos[i][5] = random(2, 4);
+        dinamicos[i][2] = random(-800, -1000);
       }
       
       if(i == 9){
-      //Posi ou posição no eixo X
-      dinamicos[i][2] = random(-1000,-700);
-        //Iniciopeixe
-      dinamicos[i][3] = random(height - 200);
+        dinamicos[i][2] = random(-1000, -700);
+        dinamicos[i][3] = random(height - 200);
+      }
     }
-    
-    }
-    
-
   }
-  
- 
-  //rect(0, height * 0.8, width * 0.1);
+  achouAlgo();
 }
-
-
 
 function peixinho1(alt, posi, inicioPeixe, peixe, ampli, vel){
-  //Posicionamento do peixe na tela
-  alt =  ampli * cos(posi * vel) + inicioPeixe;
-  image(peixe,posi, alt);
-  
+  alt = ampli * cos(posi * vel) + inicioPeixe;
+  image(peixe, posi, alt);
 }
 
+//image(bau, width * 0.1, height * 0.62, 160, 160);
+
+function achouAlgo(){
+  if (mouseX > width * 0.8 && mouseX < width - (width * 0.1) && mouseY > height * 0.55 && mouseY < height * 0.83){
+    fundo.style.backgroundColor = "rgba(47, 126, 216, 0.8)";
+  }else if (mouseX > width * 0.1 && mouseX < width * 0.4 && mouseY > height * 0.62 && mouseY < height * 0.82){
+    fundo.style.backgroundColor = "rgba(47, 216, 191, 0.8)";
+  }else{
+    fundo.style.backgroundColor = "rgb(207, 207, 207)";
+  }
+}
+
+function mouseClicked(){
+    if (mouseX > width * 0.8 && mouseX < width - (width * 0.1) && mouseY > height * 0.55 && mouseY < height * 0.83){
+      window.location.href = "/meiaNoite/index.html";
+    }
+
+
+    if (mouseX > width * 0.1 && mouseX < width * 0.4 && mouseY > height * 0.62 && mouseY < height * 0.82){
+      window.location.href = "/tesouro/index.html";
+    }
+}
