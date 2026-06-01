@@ -1,0 +1,24 @@
+@font-face {
+    font-family: "pixel";
+    src: url(/PixelArt/Jersey10-Regular.ttf);
+}
+html, body {
+  background-color: bisque;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+h1{
+    width: 450px;
+    color: rgb(0, 139, 0);
+    text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.726);
+    text-align: center;
+    font-family: "pixel";
+    font-size: 40pt;
+}
+canvas {
+  border: solid 10px rgb(88, 32, 0);
+  display: block;
+}
