@@ -8,8 +8,8 @@ let peixes = [];
 let bolhas = [];
 let fundo = document.getElementById("fundo");
 
-
 let quantidadePlantas = 20; 
+
 
 function preload(){
   //Elementos dinâmicos
@@ -43,6 +43,8 @@ function preload(){
 
   // Bonequinho 
   submarino = loadImage("SUBMARINO.png");
+  
+
 }
 
 function setup() {
@@ -112,6 +114,7 @@ function setup() {
       num = 0;
     }
   }
+
 }
 
 function draw() {

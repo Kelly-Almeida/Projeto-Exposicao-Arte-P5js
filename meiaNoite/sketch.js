@@ -22,6 +22,9 @@ function preload(){
   //Lobinho e bonequinho
   bonequinho = loadImage("bonequinho.png");
   lobo = loadImage("Pausar GIF Image.gif");
+
+  //Som do lobinho
+  somLobo = loadSound("somLobo.m4a");
 }
 
 function setup() {
@@ -67,6 +70,7 @@ function noite(J){
 }
 
 function dia(J){
+  somLobo.stop();
   J = 0;
   background(0, 128, 255);
   //Ambiente
@@ -112,6 +116,7 @@ function mousePressed() {
       podeClicar = false;
       setTimeout(() => {
         podeClicar = true;
+        somLobo.play();
       }, 4000); // Mantém os 4000ms que você definiu
     }
   }
