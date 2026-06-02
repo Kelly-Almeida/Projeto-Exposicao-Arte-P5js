@@ -1,3 +1,5 @@
+//ADICIONAR UM MÚSICA E UM EFEITO SONORO  
+
 //Variáveis
 let podeClicar = true;
 let vel = [];

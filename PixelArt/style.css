@@ -21,4 +21,12 @@ h1{
 canvas {
   border: solid 10px rgb(88, 32, 0);
   display: block;
+  anchor-name: --Tela;
+}
+
+.moldura{
+  width: 500px;
+  position: absolute;
+  position-anchor: --Tela;
+  position-area: center;
 }

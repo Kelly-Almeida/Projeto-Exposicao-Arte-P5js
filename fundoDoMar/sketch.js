@@ -1,3 +1,5 @@
+// VER UMA TRILHA SONORA https://www.epidemicsound.com/sound-effects/categories/water/wave/?utm_source=google&utm_medium=paidsearch&utm_campaign=23377475439&utm_term=ocean%20sounds%20download&gad_source=1&gad_campaignid=23377475439&gbraid=0AAAAADk_3KkdjWStUG-Kba7YexeF9xkP5&gclid=Cj0KCQjw_vnQBhCxARIsADcZyxLqDAf6eG3panAC7IMoB9KVmOZ4tcfXglxtADiC3YewVlBAYfkKsUsaAux4EALw_wcB
+
 let ampli = 50, freq = 20, x = 0, y = 0;
 let alt, posi = 0, inicioPeixe;
 let dinamicos = []; 
@@ -10,6 +12,7 @@ let fundo = document.getElementById("fundo");
 let quantidadePlantas = 20; 
 
 function preload(){
+  //Elementos dinâmicos
   peixes[0] = loadImage("peixe.png");
   peixes[1] = loadImage("baiacu.png");
   peixes[2] = loadImage("peixe-1.png");
@@ -27,7 +30,7 @@ function preload(){
   peixes[14] = loadImage("peixe-gato.png");
   peixes[15] = loadImage("peixe-palhaco.png");
   
-
+  //Elementos estáticos
   coral = loadImage("coral.png");
   estrela = loadImage("estrelas-do-mar.png");
   algas = loadImage("algas-marinhas (1).png");
@@ -114,7 +117,7 @@ function setup() {
 function draw() {
   background(0, 70, 150);
   
-
+  //Bolhas
   for(let i = 0; i < 50; i++){
     let vel = map(bolhas[i][2], 1, 5, 3, 8);
     let tam = map(bolhas[i][2], 1, 5, 10, 20);
@@ -131,21 +134,23 @@ function draw() {
     }
   }
   
-
+  //Areia
   strokeWeight(2.5);
   stroke(0, 0, 60);
   fill(195, 172, 135);
-  rect(-10, height * 0.80, width + 10, height * 0.35);
+  rect(-10, height * 0.76, width + 10, height * 0.35);
   
+  //Elementos fixos
   image(castelo, width * 0.80, height * 0.55, 200, 200);
   image(bau, width * 0.1, height * 0.62, 160, 160);
   image(submarino, mouseX - 65, mouseY - 65, 200, 200);
   
-
+  //Gerando plantas
   for(let i = 0; i < quantidadePlantas; i++){
       image(estatico[i][2], estatico[i][0], estatico[i][1], estatico[i][3], estatico[i][4]);
   }
   
+  //Gerando Peixes
   for(let i = 0; i < 10; i++){
     peixinho1(dinamicos[i][1], dinamicos[i][2], dinamicos[i][3], dinamicos[i][0], dinamicos[i][4], dinamicos[i][6]);
     
@@ -171,13 +176,14 @@ function draw() {
   achouAlgo();
 }
 
+//Colocando os peixinhos
 function peixinho1(alt, posi, inicioPeixe, peixe, ampli, vel){
   alt = ampli * cos(posi * vel) + inicioPeixe;
   image(peixe, posi, alt);
 }
 
-//image(bau, width * 0.1, height * 0.62, 160, 160);
 
+//Mudando cor quando achou algo
 function achouAlgo(){
   if (mouseX > width * 0.8 && mouseX < width - (width * 0.1) && mouseY > height * 0.55 && mouseY < height * 0.83){
     fundo.style.backgroundColor = "rgba(47, 126, 216, 0.8)";
@@ -188,6 +194,7 @@ function achouAlgo(){
   }
 }
 
+//Direcionamento de tela
 function mouseClicked(){
     if (mouseX > width * 0.8 && mouseX < width - (width * 0.1) && mouseY > height * 0.55 && mouseY < height * 0.83){
       window.location.href = "/meiaNoite/index.html";
