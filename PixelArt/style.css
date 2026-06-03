@@ -9,6 +9,7 @@ html, body {
   display: flex;
   justify-content: center;
   text-align: center;
+  anchor-name: --parede;
 }
 h1{
     width: 450px;
@@ -24,9 +25,16 @@ canvas {
   anchor-name: --Tela;
 }
 
-.moldura{
+#moldura{
   width: 500px;
   position: absolute;
   position-anchor: --Tela;
   position-area: center;
+}
+
+#chao{
+  position: absolute;
+  position-anchor: --parede;
+  transform: translateY(17%);
+  position-area: bottom center;
 }
