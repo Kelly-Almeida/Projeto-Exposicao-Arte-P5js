@@ -12,14 +12,15 @@ function preload(){
   arbusto = loadImage("arbustos.png");
   arvore = loadImage("arvore.png");
   bonequinho = loadImage("bonequinho.png")
-  
-  musica = loadSound('Os Barões da Pisadinha - Já Que Me Ensinou a Beber (Áudio Oficial) [y_HY1jZlUP0].mp3');
+  fogueira = loadImage("fogueira.gif");
+  chapeu = loadImage("chapeu-de-palha.png");
+  garrafa = loadImage("vinho.png");
 
 
   musicas[0] = loadSound('Os Barões da Pisadinha - Já Que Me Ensinou a Beber (Áudio Oficial) [y_HY1jZlUP0].mp3');
   musicas[1] = loadSound('Luiz Gonzaga • O Cheiro da Karolina • VERSÃO FORROZINHO • Karolina UM UM UM [9gbWg7EGFEc].mp3');
   musicas[2] = loadSound('CORONA - Biu Do Piseiro ( Áudio Oficial ) [xL6oXd6mFZY].mp3');
-  musicas[3] = loadSound('Amor na praia - Natan - O que eu mais quero é te amar na praia [cxgJwW-Yi0c].mp3');
+  musicas[3] = loadSound('FORROZINHO MEDLEY MUIDO DE VAQUEJADA, FELIPE AMORIM, ZE VAQUEIRO, XAND AVIÃO TALITA MEL, JEFFDEPL [1KoSemaBF_w].mp3');
   
 }
 
@@ -46,18 +47,22 @@ function draw() {
   strokeWeight(5);
   stroke(0, 0, 0);
   fill(130, 80, 60);
-  rect(-10, height * 0.8, width + 10, (height - (height * 0.8) + 10))
+  rect(-10, height * 0.74, width + 10, (height - (height * 0.74) + 10))
   
   image(mesa, width * 0.15, height * 0.65, 250, 250)
   image(cadeira, width * 0.30, height * 0.7, 180, 180)
   image(bebidas, width * 0.20, height*0.66)
 
-  for( let i = 0.0; i < 0.5; i+=0.1){
+  for( let i = 0.0; i < 0.4; i+=0.1){
     image(arbusto, width * i, height * 0.89, 200, 200);
   }
   
   image(arvore, width * -0.1, height * 0.2, 600, 600);
   image(bonequinho, width * 0.5, height*0.6, 400, 400);
+  image(chapeu, width * 0.571, height*0.66, 120,120);
+  image(garrafa, width * 0.62, height * 0.8)
+  image(fogueira, width * 0.4, height * 0.7, 300, 300);
+  
 
 
   //Parte do som
@@ -103,8 +108,7 @@ function draw() {
 
 function mousePressed (){
 
-    
-   
+     
   if (musicas[numM].isPlaying()) {
     musicas[numM].stop();
   }
