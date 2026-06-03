@@ -205,6 +205,6 @@ function mouseClicked(){
 
 
     if (mouseX > width * 0.1 && mouseX < width * 0.4 && mouseY > height * 0.62 && mouseY < height * 0.82){
-      window.location.href = "/tesouro/index.html";
+      window.location.href = "/pixelArt/index.html";
     }
 }

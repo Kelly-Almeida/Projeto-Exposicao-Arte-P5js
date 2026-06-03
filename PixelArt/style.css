@@ -33,8 +33,9 @@ canvas {
 }
 
 #chao{
+  width: 1912px;
   position: absolute;
   position-anchor: --parede;
-  transform: translateY(17%);
+  transform: translateY(59.55%);
   position-area: bottom center;
 }
