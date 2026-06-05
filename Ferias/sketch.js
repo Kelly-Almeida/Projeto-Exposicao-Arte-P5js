@@ -17,10 +17,10 @@ function preload(){
   garrafa = loadImage("vinho.png");
 
 
-  musicas[0] = loadSound('Os Barões da Pisadinha - Já Que Me Ensinou a Beber (Áudio Oficial) [y_HY1jZlUP0].mp3');
-  musicas[1] = loadSound('Luiz Gonzaga • O Cheiro da Karolina • VERSÃO FORROZINHO • Karolina UM UM UM [9gbWg7EGFEc].mp3');
-  musicas[2] = loadSound('CORONA - Biu Do Piseiro ( Áudio Oficial ) [xL6oXd6mFZY].mp3');
-  musicas[3] = loadSound('FORROZINHO MEDLEY MUIDO DE VAQUEJADA, FELIPE AMORIM, ZE VAQUEIRO, XAND AVIÃO TALITA MEL, JEFFDEPL [1KoSemaBF_w].mp3');
+  musicas[0] = loadSound('A PEGADA DO VAQUEIRO É SEGURA DEMAIS - TALITA MEL_ FELIPE AMORIM_ XAND_ JEFDPL (MUIDO DE VAQUEJADA)(M4A_128K).m4a');
+  musicas[1] = loadSound('CORONA - Biu Do Piseiro ( Áudio Oficial )(M4A_128K).m4a');
+  musicas[2] = loadSound('Luiz Gonzaga • O Cheiro da Karolina • VERSÃO FORROZINHO • Karolina UM UM UM(M4A_128K).m4a');
+  musicas[3] = loadSound('Os Barões da Pisadinha - Já Que Me Ensinou a Beber (Áudio Oficial)(M4A_128K).m4a');
   
 }
 
@@ -118,7 +118,7 @@ function mousePressed (){
   
   if (numM >= musicas.length) {
     numM = 0;
-    musicas[4] = loadSound('Os Barões da Pisadinha - Já Que Me Ensinou a Beber (Áudio Oficial) [y_HY1jZlUP0].mp3');
+    musicas[4] = loadSound('A PEGADA DO VAQUEIRO É SEGURA DEMAIS - TALITA MEL_ FELIPE AMORIM_ XAND_ JEFDPL (MUIDO DE VAQUEJADA)(M4A_128K).m4a');
     
   }else{
     musicas[numM].play();
